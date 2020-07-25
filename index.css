@@ -1,0 +1,121 @@
+*:focus{
+    outline: none;
+}
+.log{
+    
+    position:fixed;
+    top: 50%;
+    left: 50%;
+
+    margin-top: -9em;
+    margin-left: -11em;}
+p{
+        text-align: right;
+        padding: 4px;
+        padding-top: 14px;
+    }
+body{
+    text-align: center;
+    height: 100%;
+    background-color:#030f4f;
+}
+.input{
+    padding: 10px;
+    text-align: center;
+    width: 250px;
+    min-width: 50px;
+    background-color: #ffffff;
+    border: 1px;
+    border-radius: 6px;
+    color: black;
+}
+
+.sub{
+
+    background-color:  !important;
+    color: black !important;
+}
+.reg{
+    position:fixed;
+    right: 60px;
+    padding-top: 40px;
+}
+a{
+    color:#ffffff;
+    font-size: 20px;
+    text-align: right;
+  
+}
+
+a:hover{
+    text-decoration-color: aliceblue;
+}
+a:-webkit-any-link {
+
+    text-decoration: none;
+}
+.sub:hover{
+    background-color: azure !important;
+}
+h3{
+    text-align: center;
+    color:#ffffff;
+}
+h6{
+    text-align: center;
+}
+.slide-down{
+    width:100%;
+}
+img{
+    width: inherit;
+    height: 200px;
+}
+
+  div.slide-down {
+  height: 200px;
+  overflow:hidden;
+}
+div.slide-down img {
+  animation: 2s slide-down;
+  margin-top:0%;
+}
+
+@keyframes slide-down {
+  from {
+    margin-top: -25%;
+    height: 300%; 
+  }
+
+  to {
+    margin-top: 0%;
+    height: 100%;
+  }
+
+}
+
+input.check{
+    position: absolute !important;
+    right: 60px !important;
+    top: 193px !important;
+
+    }
+
+::-webkit-scrollbar {
+width: 12px;
+height: 12px;
+}
+
+::-webkit-scrollbar-track {
+border: 1px solid #ffffff;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+background: #ffffff;  
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #ffffff;  
+}
