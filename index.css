@@ -1,14 +1,30 @@
 *:focus{
     outline: none;
 }
+.head{
+    color:white;
+}
+
 .log{
     
     position:fixed;
-    top: 50%;
+    top: 41%;
     left: 50%;
-
+    background-color: black;
+    border-radius:10px;
+    box-shadow: 0 0 10px 0 white;
     margin-top: -9em;
     margin-left: -11em;}
+.log1{
+    
+        position:fixed;
+        top: 35%;
+        left: 50%;
+        background-color: black;
+        border-radius:10px;
+        box-shadow: 0 0 10px 0 white;
+        margin-top: -9em;
+        margin-left: -11em;}
 p{
         text-align: right;
         padding: 4px;
@@ -17,7 +33,7 @@ p{
 body{
     text-align: center;
     height: 100%;
-    background-color:#030f4f;
+    background-color:#020202;
 }
 .input{
     padding: 10px;
@@ -32,7 +48,7 @@ body{
 
 .sub{
 
-    background-color:  !important;
+    background-color: white !important;
     color: black !important;
 }
 .reg{
