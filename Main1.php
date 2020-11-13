@@ -5,9 +5,9 @@ error_reporting(0);
 if($_SESSION["name"]!="")
 {
 ?>
-<html>
+<!DOCTYPE html>
 <head>
-    <title>| Review |</title>
+    <title> Review </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -60,10 +60,15 @@ if($_SESSION["name"]!="")
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <button class="btn mr-2" type="button" onclick=window.location="logout.php">Logout</button>
       <input class="form-control mr-sm-2" type="search" placeholder="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+      </form>
+      <button class="btn" type="submit">Search</button>&nbsp;
+      <button class="btn mr-2" type="button" onclick=window.location="profile.php">My Profile</button>
+      <button class="btn mr-2" type="button" onclick=window.location="logout.php">Logout</button>
+
+
+
+   
   </div>
 </nav>    
 
@@ -80,19 +85,42 @@ if($_SESSION["name"]!="")
     
     
     
-    
-    <div class="genre" id="latest"><p><B>LATEST</B></p> 
+    <h3 style="color:white;width:100%;background-color:black"><B style="padding:10px;">LATEST</B></h3> 
+    <div class="genre" id="latest"><br>
     <table>
 <?php
     $res=mysqli_query($gj,"select * from latest");
+    $rat=mysqli_connect("localhost","root","");
+
     while($row=mysqli_fetch_array($res))
 		{
             $url = 'rate.php?';
             $url .= 'genre=latest&movie=';
-            $url .= $row['image'];
+            $url .= $row['name'];
+            $movie=$row['name'];
+            $sum=0;
+            $i=0;
+            if($rat)
+            {
+                mysqli_select_db($rat,"review");
+                $query="select * from rating where movie='$movie'";
+                $result=mysqli_query($rat,$query);
+                while($raw=mysqli_fetch_array($result))
+                {
+                    $i=$i+1;
+                    $sum=$sum+$raw['star'];
+                }
+                $rating=$sum/$i;
+                if($sum==0){
+                  $rating=0;
+                }
+        
+            }
 		 ?><tr >
-		 <a href="<?php echo $url;?>"> <img src= "uploads/latest/<?php echo $row['image']; ?>" height="200" width="200" style="margin:50px 30px;border-radius:20px"></img><br><?php echo $row['name']?></a></tr>
-		 <?php	
+          <div class="box">
+		 <a href="<?php echo $url;?>"> <img src= "uploads/latest/<?php echo $row['image']; ?>" height="150" width="150" style="margin:50px 30px;border-radius:20px"></img><br><?php echo $row['name'];?><h4>(<?php echo $rating?>/5)</h4></a></tr>
+		 </div>
+     <?php	
 		}
 	       ?>
   </table>
@@ -100,74 +128,167 @@ if($_SESSION["name"]!="")
 </div>
 
 
+<h3><B style="padding:10px;">HORROR</B></h3> 
 
-<div  class="genre" id="horror"><p><B>HORROR</B></p>
+<div  class="genre" id="horror">
 <table>
 <?php
     $res=mysqli_query($gj,"select * from horror");
+    $rat=mysqli_connect("localhost","root","");
+
     while($row=mysqli_fetch_array($res))
 		{
-            $url = 'rate.php';
-            $url .= '?genre=horror&movie=';
-            $url .= $row['image'];
+            $url = 'rate.php?';
+            $url .= 'genre=horror&movie=';
+            $url .= $row['name'];
+            $movie=$row['name'];
+            $sum=0;
+            $i=0;
+            if($rat)
+            {
+                mysqli_select_db($rat,"review");
+                $query="select * from rating where movie='$movie'";
+                $result=mysqli_query($rat,$query);
+                while($raw=mysqli_fetch_array($result))
+                {
+                    $i=$i+1;
+                    $sum=$sum+$raw['star'];
+                }
+                $rating=$sum/$i;
+                if($sum==0){
+                  $rating=0;
+                }
+        
+            }
 		 ?><tr >
-		 <a href="<?php echo $url;?>"><img src= "uploads/horror/<?php echo $row['image']; ?>" height="200" width="200" style="margin:50px 30px;border-radius:20px"></img><br><?php echo $row['name']?></a></tr>
-		 <?php 	
+     <div class="box">
+		 <a href="<?php echo $url;?>"> <img src= "uploads/horror/<?php echo $row['image']; ?>" height="150" width="150" style="margin:50px 30px;border-radius:20px"></img><br><?php echo $row['name'];?><h4>(<?php echo $rating?>/5)</h4></a></tr>
+		 </div>		 <?php 	
 		}
 	?>
   </table>
 </div>
 
 
+<h3><B style="padding:10px;">ACTION</B></h3> 
 
-<div  class="genre" id="action" name="action"><p><B>ACTION</B></p>
+<div  class="genre" id="action" name="action"><p>
 <table>
 <?php
     $res=mysqli_query($gj,"select * from action");
+    $rat=mysqli_connect("localhost","root","");
+
     while($row=mysqli_fetch_array($res))
 		{
-            $url = 'rate.php';
-            $url .= '?genre=action&movie=';
-            $url .= $row['image'];
+            $url = 'rate.php?';
+            $url .= 'genre=action&movie=';
+            $url .= $row['name'];
+            $movie=$row['name'];
+            $sum=0;
+            $i=0;
+            if($rat)
+            {
+                mysqli_select_db($rat,"review");
+                $query="select * from rating where movie='$movie'";
+                $result=mysqli_query($rat,$query);
+                while($raw=mysqli_fetch_array($result))
+                {
+                    $i=$i+1;
+                    $sum=$sum+$raw['star'];
+                }
+                $rating=$sum/$i;
+                if($sum==0){
+                  $rating=0;
+                }
+        
+            }
 		 ?><tr >
-		 <a href="<?php echo $url;?>"><img src= "uploads/action/<?php echo $row['image']; ?>" height="200" width="200" style="margin:50px 30px;border-radius:20px"></img><br><?php echo $row['name']?></a></tr>
-		 <?php 	
+     <div class="box">
+		 <a href="<?php echo $url;?>"> <img src= "uploads/action/<?php echo $row['image']; ?>" height="150" width="150" style="margin:50px 30px;border-radius:20px"></img><br><?php echo $row['name'];?><h4>(<?php echo $rating?>/5)</h4></a></tr>
+		 </div>		 <?php 	
 		}
 	?>
   </table>
 </div>
 
+<h3><B style="padding:10px;">ROMANCE</B></h3> 
 
-<div  class="genre" id="romance"><p><B>ROMANCE</B></p>    
+<div  class="genre" id="romance">   
 <table>
 <?php
     $res=mysqli_query($gj,"select * from romance");
+    $rat=mysqli_connect("localhost","root","");
+
     while($row=mysqli_fetch_array($res))
 		{
-            $url = 'rate.php';
-            $url .= '?genre=romance&movie=';
-            $url .= $row['image'];
-		 ?><tr>
-		 <a href="<?php echo $url;?>"><img src= "uploads/thriller/<?php echo $row['image']; ?>" height="200" width="200" style="margin:50px 30px;border-radius:20px"></img><br><?php echo $row['name']?></a></tr>
-		 <?php 	
+            $url = 'rate.php?';
+            $url .= 'genre=romance&movie=';
+            $url .= $row['name'];
+            $movie=$row['name'];
+            $sum=0;
+            $i=0;
+            if($rat)
+            {
+                mysqli_select_db($rat,"review");
+                $query="select * from rating where movie='$movie'";
+                $result=mysqli_query($rat,$query);
+                while($raw=mysqli_fetch_array($result))
+                {
+                    $i=$i+1;
+                    $sum=$sum+$raw['star'];
+                }
+                $rating=$sum/$i;
+                if($sum==0){
+                  $rating=0;
+                }
+        
+            }
+		 ?><tr >
+     <div class="box">
+		 <a href="<?php echo $url;?>"> <img src= "uploads/romance/<?php echo $row['image']; ?>" height="150" width="150" style="margin:50px 30px;border-radius:20px"></img><br><?php echo $row['name'];?><h4>(<?php echo $rating?>/5)</h4></a></tr>
+		 </div>		 <?php 	
 		}
 	?>
   </table>
 </div>
 
+<h3><B style="padding:10px;">THRILLER</B></h3> 
 
-<div  class="genre" id="thriller"><p><B>THRILLER</B></p>    
+<div  class="genre" id="thriller">   
 <table>
 <?php
     $res=mysqli_query($gj,"select * from thriller");
+    $rat=mysqli_connect("localhost","root","");
+
     while($row=mysqli_fetch_array($res))
 		{
-            $url = 'rate.php';
-            $url .= '?genre=thriller&movie=';
-            $url .= $row['image'];
-		 ?><tr>
-		 <a href="<?php echo $url;?>"><img src= "uploads/thriller/<?php echo $row['image']; ?>" height="200" width="200" style="margin:50px 30px;border-radius:20px"></img><br><?php echo $row['name']?></a></tr>
-		 <?php 	
+            $url = 'rate.php?';
+            $url .= 'genre=thriller&movie=';
+            $url .= $row['name'];
+            $movie=$row['name'];
+            $sum=0;
+            $i=0;
+            if($rat)
+            {
+                mysqli_select_db($rat,"review");
+                $query="select * from rating where movie='$movie'";
+                $result=mysqli_query($rat,$query);
+                while($raw=mysqli_fetch_array($result))
+                {
+                    $i=$i+1;
+                    $sum=$sum+$raw['star'];
+                }
+                $rating=$sum/$i;
+                if($sum==0){
+                  $rating=0;
+                }
+        
+            }
+		 ?><tr >
+     <div class="box">
+		 <a href="<?php echo $url;?>"> <img src= "uploads/thriller/<?php echo $row['image']; ?>" height="150" width="150" style="margin:50px 30px;border-radius:20px"></img><br><?php echo $row['name'];?><h4>(<?php echo $rating?>/5)</h4></a></tr>
+		 </div>
+     <?php 	
 		}
 	?>
   </table>
