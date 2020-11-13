@@ -73,11 +73,29 @@ if($_SESSION["name"]!="")
     $table=$_GET['genre'];
     $movie=$_GET['movie'];        
     $rat=mysqli_connect("localhost","root","");
+    $sum=0;
+    $i=0;
+    if($rat)
+    {
+        mysqli_select_db($rat,"review");
+        $query="select * from rating where movie='$movie'";
+        $result=mysqli_query($rat,$query);
+        while($raw=mysqli_fetch_array($result))
+        {
+            $i=$i+1;
+            $sum=$sum+$raw['star'];
+        }
+        $rating=$sum/$i;
+        if($sum==0){
+            $rating=0;
+          }
+
+    }
     $con=mysqli_connect("localhost","root","");
     if($con)
     {
         mysqli_select_db($con,"review");
-        $query="select * from $table where image='$movie'";
+        $query="select * from $table where name='$movie'";
         
         $result=mysqli_query($con,$query);
         if (!$result) {
@@ -100,35 +118,22 @@ if($_SESSION["name"]!="")
         <table>    
             <tr>
                 <td>
-                    <img src= "uploads/<?php echo $table;?>/<?php echo $row['image']; ?>" height="600" width="400" >  
-                    <br><br><h3><?php echo $withoutExt ?></h3>
+                
+                    <img src= "uploads/<?php echo $table;?>/<?php echo $row['image']; ?>" height="600" width="400" >  <br><br>
+            
 
                 </td>
                 <td>
+                    <h2 style="text-align:left;color:black;"><?php echo $movie ?></h3>
                     <div class="movie_info">
-                    <h3>Plot</h3>
                     <p><?php echo $row['description'] ?></p>
                     </div>
+                    <br><br>
+                    <h4 style="text-align:left;">Rating:&nbsp; <?php echo $rating;?>/5<h4>
                 </td>
             </tr><br><br><br><Br>
         </table><br><br>
-        <?php
-            $sum=0;
-            $i=0;
-            if($rat)
-            {
-                mysqli_select_db($rat,"review");
-                $query="select * from rating where movie='$movie'";
-                $result=mysqli_query($rat,$query);
-                while($raw=mysqli_fetch_array($result))
-                {
-                    $i=$i+1;
-                    $sum=$sum+$raw['star'];
-                }
-                $rating=$sum/$i;
 
-            }
-        ?>
         <form action="<?php echo $url?>" method="post">
             <div class="stars">
 
