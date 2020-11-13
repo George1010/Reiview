@@ -1,7 +1,8 @@
 <?php 
 session_start();
 ?>
-<html>
+<!DOCTYPE html>
+
 <head>
     </head>
 <body>    
@@ -17,7 +18,7 @@ if(isset($_POST['sub']))
     mysqli_select_db($con,'review');
     if($con)
     {
-        $query="select * from review.log where userid='$user' and passwrd='$pass'";
+        $query="select * from review.log where email='$user' and password='$pass'";
         $result=mysqli_query($con,$query)or die( mysqli_error($con));
         $row=mysqli_fetch_array($result);
         if($user==$name && $pass==$pass1)
@@ -25,7 +26,7 @@ if(isset($_POST['sub']))
             header("location:up.php");
         }
         
-        else if($row['userid']==$user && $row['passwrd']==$pass)
+        else if($row['email']==$user && $row['password']==$pass)
         {
             $url="Main1.php";
             $_SESSION['name']=$user;
