@@ -68,12 +68,13 @@ else
         if(isset($_POST['upload']))
         {
             echo "in";
+
             $image=$_FILES['image']['name'];
   	        $image_text = mysqli_real_escape_string($con, $_POST['image_text']);
             echo $genre;
             echo $image_text;
             echo $image;
-            $name=pathinfo($image, PATHINFO_FILENAME); 
+            $name=$_POST['name']; 
             echo $name;
             $query="insert into review.$genre (name,image,description) values ('$name','$image','$image_text')";
             $result=mysqli_query($con,$query);
