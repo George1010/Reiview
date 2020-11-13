@@ -44,6 +44,11 @@
   	  <input type="file" name="image">
   	</div><br><br>
     <div>
+    <input type="text" name="name"><br><br>
+
+    </div>
+
+    <div>
     Genre:<select name="genre">
             <option>latest</option>
             <option>horror</option>
