@@ -12,18 +12,17 @@ session_start();
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="index.js"></script>
 <link rel="stylesheet" href="index.css">
-<title>|Review|</title>
+<title>Review</title>
 </head>
 
 <body>
 
-<div class="slide-down">
-    <img src="wave%20(4).png">
-</div>
+<div class="head"><br>REVIEW YOUR <B>FAVOURATE</B> MOVIES HERE</div>
+
 
     <div class="container">
         <div class="log p-5">
-                            <h3>LOG IN</h3><br>
+            <h3>LOG IN</h3><br>
             <form autocomplete="off" action="log.php" method="POST">
                 <input class="input" name="id" type="text" placeholder="user Id"><br><br>
                 <input class="input" name="pass" id="pass" checked="false" type="password" placeholder="password">
