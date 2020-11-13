@@ -10,7 +10,7 @@ session_start();
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="index.js"></script>
 <link rel="stylesheet" href="index.css">
-<title>|Review|</title>
+<title>Review</title>
 </head>
 
 <body>
@@ -19,17 +19,15 @@ session_start();
 }
 </style>
 
-<div class="slide-down">
-    <img src="wave%20(4).png">
-</div>
+<div class="head"><br>REVIEW YOUR <B>FAVOURATE</B> MOVIES HERE</div>
 
     <div class="container">
-        <div class="log p-5">
+        <div class="log1 p-5">
             <form autocomplete="off" action="reg.php" method="post">
                 <h3>SIGN UP</h3><br>
-                <input class="input" type="text" placeholder="Name" ><br><br>
+                <input class="input" type="text" placeholder="Name" name="name"><br><br>
                 <input class="input"  type="text" placeholder="Email" name="email"><br><br>
-                <input class="input"  type="text" placeholder="Mobile No"><br><br>
+                <input class="input"  type="text" placeholder="Mobile No" name="mob"><br><br>
                 <input class="input"  type="text" placeholder="Password" name="pass"><br><br>
                 <input class="input sub" type="submit" name="sub" value="SIGN UP"><br><br>
                 <a href="index.php"><h6>Log In..!!</h6></a>
